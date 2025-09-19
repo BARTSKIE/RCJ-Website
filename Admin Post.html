@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RCJ Optical Clinic</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #005f8c;
+            --primary-light: #4a90e2;
+            --secondary: #ff7e33;
+            --accent: #00b4d8;
+            --dark: #1a365d;
+            --light: #f8f9fa;
+            --white: #ffffff;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+            --success: #28a745;
+            --warning: #ffc107;
+            --danger: #dc3545;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--white);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+
+        .logo h1 span {
+            color: var(--secondary);
+        }
+
+        .logo p {
+            font-size: 0.8rem;
+            color: var(--gray);
+            margin-top: -5px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            color: var(--dark);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 5px 0;
+            position: relative;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .admin-panel {
+            padding: 100px 0 50px;
+            background: var(--light);
+            min-height: 100vh;
+        }
+
+        .admin-container {
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            padding: 30px;
+        }
+
+        .admin-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .admin-header h1 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .admin-header p {
+            color: var(--gray);
+        }
+
+        .admin-form {
+            margin-bottom: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .form-group input, 
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--white);
+            padding: 12px 30px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 95, 140, 0.2);
+        }
+
+        .btn:hover {
+            background: var(--primary-light);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 95, 140, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+        }
+
+        .btn-secondary:hover {
+            background: #ff6a1a;
+        }
+
+        .posts-container {
+            margin-top: 30px;
+        }
+
+        .post {
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .post-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .post-avatar {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+
+        .post-info h3 {
+            font-size: 1.1rem;
+            color: var(--dark);
+        }
+
+        .post-info p {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        .post-content {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .post-actions {
+            display: flex;
+            gap: 15px;
+            border-top: 1px solid var(--light-gray);
+            padding-top: 15px;
+        }
+
+        .post-action {
+            display: flex;
+            align-items: center;
+            color: var(--gray);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .post-action:hover {
+            color: var(--primary);
+        }
+
+        .post-action i {
+            margin-right: 5px;
+        }
+
+        .chatbot-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 350px;
+            background: var(--white);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            height: 500px;
+        }
+
+        .chatbot-header {
+            background: var(--primary);
+            color: var(--white);
+            padding: 15px 20px;
+            position: relative;
+        }
+
+        .chatbot-header h4 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .chatbot-header p {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        .close-chatbot {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: transparent;
+            border: none;
+            color: var(--white);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .close-chatbot:hover {
+            transform: rotate(90deg);
+        }
+
+        .chatbot-messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            background: #f5f7fa;
+        }
+
+        .chatbot-message {
+            max-width: 80%;
+            margin-bottom: 15px;
+            padding: 10px 15px;
+            border-radius: 18px;
+            position: relative;
+            animation: fadeIn 0.3s ease;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .chatbot-message.bot {
+            background: var(--white);
+            border-bottom-left-radius: 5px;
+            margin-right: auto;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .chatbot-message.user {
+            background: var(--primary);
+            color: var(--white);
+            border-bottom-right-radius: 5px;
+            margin-left: auto;
+        }
+
+        .timestamp {
+            display: block;
+            font-size: 0.7rem;
+            opacity: 0.7;
+            margin-top: 5px;
+        }
+
+        .chatbot-input {
+            display: flex;
+            padding: 10px;
+            background: var(--white);
+            border-top: 1px solid #e1e5eb;
+        }
+
+        .chatbot-input input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 50px;
+            outline: none;
+            font-family: inherit;
+            font-size: 0.9rem;
+        }
+
+        .chatbot-input button {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 50%;
+            margin-left: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .chatbot-input button:hover {
+            background: var(--secondary);
+            transform: rotate(30deg);
+        }
+
+        .chatbot-trigger {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: var(--white);
+            width: 60px;
+            height: 60px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: none;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 20px rgba(0, 95, 140, 0.3);
+            z-index: 999;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            padding: 0 25px;
+        }
+
+        .chatbot-trigger span {
+            display: none;
+            margin-left: 10px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .chatbot-trigger:hover {
+            width: 180px;
+            background: var(--secondary);
+        }
+
+        .chatbot-trigger:hover span {
+            display: inline;
+        }
+
+        .admin-posts {
+            margin-top: 30px;
+            border-top: 1px solid var(--light-gray);
+            padding-top: 30px;
+        }
+
+        .admin-posts h2 {
+            margin-bottom: 20px;
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        .admin-post {
+            background: var(--light);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .admin-post-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .admin-post-avatar {
+            width: 30px;
+            height: 30px;
+            background: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-right: 10px;
+        }
+
+        .admin-post-info h3 {
+            font-size: 1rem;
+        }
+
+        .admin-post-info p {
+            font-size: 0.7rem;
+            color: var(--gray);
+        }
+
+        .admin-post-content {
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .chatbot-container {
+                width: 90%;
+                right: 5%;
+                bottom: 80px;
+            }
+            
+            .chatbot-trigger:hover {
+                width: 60px;
+            }
+            
+            .chatbot-trigger:hover span {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <h1>RCJ <span>Optical</span></h1>
+                <p>Clinic & Vision Center</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">Admin Panel</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Admin Panel -->
+    <section class="admin-panel">
+        <div class="container">
+            <div class="admin-container">
+                <div class="admin-header">
+                    <h1>Admin Dashboard</h1>
+                    <p>Manage clinic updates and announcements</p>
+                </div>
+                
+                <div class="admin-form">
+                    <h2>Create New Post</h2>
+                    <div class="form-group">
+                        <label for="postTitle">Post Title</label>
+                        <input type="text" id="postTitle" placeholder="Enter post title">
+                    </div>
+                    <div class="form-group">
+                        <label for="postContent">Post Content</label>
+                        <textarea id="postContent" placeholder="Enter post content"></textarea>
+                    </div>
+                    <button class="btn btn-secondary" id="createPostBtn">Create Post</button>
+                </div>
+                
+                <div class="admin-posts">
+                    <h2>Recent Posts</h2>
+                    <div id="postsContainer">
+                        <!-- Posts will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Chatbot -->
+    <div class="chatbot-container">
+        <div class="chatbot-header">
+            <h4>Vision Assistance</h4>
+            <p>How can we help you today?</p>
+            <button class="close-chatbot"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="chatbot-messages">
+            <div class="chatbot-message bot">
+                <p>Hello! 👋 Welcome to RCJ Optical. I'm here to help with appointment booking, service questions, or general information. What can I assist you with?</p>
+                <span class="timestamp">Just now</span>
+            </div>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" id="chatInput" placeholder="Type your message...">
+            <button id="sendMessageBtn"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+    <button class="chatbot-trigger">
+        <i class="fas fa-comment-dots"></i>
+        <span>Need Help?</span>
+    </button>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    
+    <script>
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDx2fBQk7VqD4iKdU1O7d4q7Qf8a9rTz0w",
+            authDomain: "rcj-optical-chatbot.firebaseapp.com",
+            databaseURL: "https://rcj-optical-chatbot-default-rtdb.firebaseio.com",
+            projectId: "rcj-optical-chatbot",
+            storageBucket: "rcj-optical-chatbot.appspot.com",
+            messagingSenderId: "123456789012",
+            appId: "1:123456789012:web:abcdef1234567890abcdef"
+        };
+        
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+        
+        // DOM elements
+        const chatContainer = document.querySelector('.chatbot-container');
+        const chatMessages = document.querySelector('.chatbot-messages');
+        const chatInput = document.getElementById('chatInput');
+        const sendMessageBtn = document.getElementById('sendMessageBtn');
+        const closeBtn = document.querySelector('.close-chatbot');
+        const chatTrigger = document.querySelector('.chatbot-trigger');
+        const createPostBtn = document.getElementById('createPostBtn');
+        const postsContainer = document.getElementById('postsContainer');
+        
+        // Chatbot state
+        let sessionId = Date.now().toString();
+        
+        // Initialize chat
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load recent posts
+            loadRecentPosts();
+            
+            // Initialize chatbot
+            initChatbot();
+            
+            // Setup event listeners
+            setupEventListeners();
+        });
+        
+        function initChatbot() {
+            // Generate session ID
+            if (!localStorage.getItem('rcj_sessionId')) {
+                localStorage.setItem('rcj_sessionId', sessionId);
+            } else {
+                sessionId = localStorage.getItem('rcj_sessionId');
+            }
+            
+            // Load chat history from Firebase
+            database.ref('chatSessions/' + sessionId).once('value').then(snapshot => {
+                const messages = snapshot.val();
+                if (messages) {
+                    // Clear initial message
+                    chatMessages.innerHTML = '';
+                    
+                    // Add messages to chat
+                    Object.keys(messages).forEach(key => {
+                        const msg = messages[key];
+                        addMessageToChat(msg.text, msg.sender === 'bot');
+                    });
+                }
+            });
+        }
+        
+        function setupEventListeners() {
+            // Chat toggle
+            chatTrigger.addEventListener('click', () => {
+                chatContainer.style.display = 'flex';
+                chatInput.focus();
+            });
+            
+            closeBtn.addEventListener('click', () => {
+                chatContainer.style.display = 'none';
+            });
+            
+            // Send message
+            sendMessageBtn.addEventListener('click', sendMessage);
+            chatInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') sendMessage();
+            });
+            
+            // Create post
+            createPostBtn.addEventListener('click', createPost);
+        }
+        
+        function sendMessage() {
+            const text = chatInput.value.trim();
+            if (text) {
+                // Add user message to chat
+                addMessageToChat(text, false);
+                
+                // Save to Firebase
+                saveMessageToFirebase(text, 'user');
+                
+                // Clear input
+                chatInput.value = '';
+                
+                // Generate bot response
+                setTimeout(() => {
+                    const botResponse = generateBotResponse(text);
+                    addMessageToChat(botResponse, true);
+                    saveMessageToFirebase(botResponse, 'bot');
+                }, 1000);
+            }
+        }
+        
+        function saveMessageToFirebase(text, sender) {
+            const messageData = {
+                text: text,
+                sender: sender,
+                timestamp: firebase.database.ServerValue.TIMESTAMP
+            };
+            
+            // Save to Firebase
+            database.ref('chatSessions/' + sessionId).push(messageData);
+        }
+        
+        function generateBotResponse(userMessage) {
+            const lowerMsg = userMessage.toLowerCase();
+            
+            if (lowerMsg.includes('hello') || lowerMsg.includes('hi')) {
+                return "Hello there! How can I assist you with your eye care needs today?";
+            } else if (lowerMsg.includes('appointment') || lowerMsg.includes('book')) {
+                return "To book an appointment, you can call us at 0956 347 8586 or visit our website. Would you like me to assist you with scheduling?";
+            } else if (lowerMsg.includes('hour') || lowerMsg.includes('open')) {
+                return "Our clinic hours are:\n\nMonday-Friday: 9AM - 7PM\nSaturday: 9AM - 5PM\nSunday: Closed";
+            } else if (lowerMsg.includes('location') || lowerMsg.includes('address')) {
+                return "We're located at:\n\nPrimark Double L, Rodriguez, Philippines\n\nYou can use Google Maps for directions to our clinic.";
+            } else if (lowerMsg.includes('service') || lowerMsg.includes('offer')) {
+                return "We offer a wide range of services including comprehensive eye exams, contact lens fittings, pediatric optometry, and premium eyewear. Visit our services page for more details!";
+            } else if (lowerMsg.includes('update') || lowerMsg.includes('news')) {
+                return "Here are our latest clinic updates:\n\n1. New Saturday hours: 9AM-5PM\n2. Introducing premium designer frames collection\n3. Free eye screening event this weekend!";
+            }
+            
+            return "I'm here to help with your eye care needs. You can ask about appointments, services, hours, or location. How can I assist you today?";
+        }
+        
+        function addMessageToChat(text, isBot) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `chatbot-message ${isBot ? 'bot' : 'user'}`;
+            
+            const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            
+            messageDiv.innerHTML = `
+                <p>${text}</p>
+                <span class="timestamp">${time}</span>
+            `;
+            
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        function createPost() {
+            const title = document.getElementById('postTitle').value.trim();
+            const content = document.getElementById('postContent').value.trim();
+            
+            if (!title || !content) {
+                alert('Please fill in both title and content fields');
+                return;
+            }
+            
+            const postData = {
+                title: title,
+                content: content,
+                timestamp: firebase.database.ServerValue.TIMESTAMP,
+                author: "Admin"
+            };
+            
+            // Save to Firebase
+            const newPostRef = database.ref('adminPosts').push();
+            newPostRef.set(postData)
+                .then(() => {
+                    alert('Post created successfully!');
+                    document.getElementById('postTitle').value = '';
+                    document.getElementById('postContent').value = '';
+                    loadRecentPosts();
+                })
+                .catch(error => {
+                    console.error('Error creating post:', error);
+                    alert('Error creating post. Please try again.');
+                });
+        }
+        
+        function loadRecentPosts() {
+            database.ref('adminPosts').orderByChild('timestamp').limitToLast(5).once('value').then(snapshot => {
+                postsContainer.innerHTML = '';
+                
+                snapshot.forEach(childSnapshot => {
+                    const post = childSnapshot.val();
+                    const postElement = createPostElement(post);
+                    postsContainer.appendChild(postElement);
+                });
+                
+                if (postsContainer.innerHTML === '') {
+                    postsContainer.innerHTML = '<p>No posts yet. Create your first post!</p>';
+                }
+            });
+        }
+        
+        function createPostElement(post) {
+            const postElement = document.createElement('div');
+            postElement.className = 'post';
+            
+            const date = new Date(post.timestamp);
+            const formattedDate = date.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            
+            postElement.innerHTML = `
+                <div class="post-header">
+                    <div class="post-avatar">A</div>
+                    <div class="post-info">
+                        <h3>${post.author}</h3>
+                        <p>${formattedDate}</p>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <h4>${post.title}</h4>
+                    <p>${post.content}</p>
+                </div>
+                <div class="post-actions">
+                    <div class="post-action"><i class="far fa-thumbs-up"></i> Like</div>
+                    <div class="post-action"><i class="far fa-comment"></i> Comment</div>
+                    <div class="post-action"><i class="far fa-share-square"></i> Share</div>
+                </div>
+            `;
+            
+            return postElement;
+        }
+        
+        // Simulate Firebase integration for the demo
+        window.firebase = {
+            database: function() {
+                return {
+                    ref: function(path) {
+                        return {
+                            push: function() {
+                                return {
+                                    set: function(data) {
+                                        return new Promise((resolve) => {
+                                            console.log("Firebase: Saving data to", path, data);
+                                            setTimeout(resolve, 500);
+                                        });
+                                    }
+                                };
+                            },
+                            once: function() {
+                                return Promise.resolve({
+                                    val: function() {
+                                        return {
+                                            "-N123456": {
+                                                title: "New Saturday Hours",
+                                                content: "We're now open on Saturdays from 9AM to 5PM!",
+                                                author: "Admin",
+                                                timestamp: Date.now() - 86400000
+                                            },
+                                            "-N123457": {
+                                                title: "Premium Frames Collection",
+                                                content: "Check out our new premium designer frames collection just arrived this week.",
+                                                author: "Admin",
+                                                timestamp: Date.now() - 172800000
+                                            }
+                                        };
+                                    }
+                                });
+                            }
+                        };
+                    }
+                };
+            }
+        };
+    </script>
+</body>
+</html>
