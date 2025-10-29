@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Chatbot Data</title>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+</head>
+<body>
+    <h2>📤 Upload Chatbot Data to Firestore</h2>
+    <button onclick="uploadEnglish()">Upload English</button>
+    <button onclick="uploadTagalog()">Upload Tagalog</button>
+    
+    <script>
+        // Your Firebase config (replace with your actual config)
+        const firebaseConfig = {
+            apiKey: "AIzaSyCvxPjQyEjn5_vIVgwGhOgAVlIkx5chnWE",
+            authDomain: "rcj-firebase-database.firebaseapp.com",
+            databaseURL: "https://rcj-firebase-database-default-rtdb.firebaseio.com",
+            projectId: "rcj-firebase-database",
+            storageBucket: "rcj-firebase-database.firebasestorage.app",
+            messagingSenderId: "322419824007",
+            appId: "1:322419824007:web:8c797773a13fae041caf22",
+        };
+        
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        
+        // English data
+        const englishData = {
+
+            greetings: {
+                "hi": "Hello! 👋 Welcome to RCJ Optical. How can I assist you today?",
+                "hello": "Hi there! 😊 What can I help you with regarding our optical services?",
+                "hey": "Hey! Welcome to RCJ Optical. What brings you here today?",
+                "good morning": "Good morning! ☀️ How can we help with your vision needs today?",
+                "good afternoon": "Good afternoon! 😊 What questions do you have about our optical services?"
+            },
+            appointment: {
+                "appointment": "📱 **Online appointments are available exclusively through our RCJ Optical Mobile App!**\n\nPlease download our app from Google Play Store to:\n• Book your appointment\n• Choose your preferred date & time\n• Set your concerns\n• Receive confirmations\n\nYou can also visit us directly during business hours!",
+                "book": "📱 **Booking is done through our mobile app only!**\n\nDownload the **RCJ Optical Mobile App** from Google Play Store to schedule your appointment conveniently.\n\nOr contact us directly for assistance!",
+                "schedule": "📱 **Schedule your visit using our mobile app!**\n\nOur **RCJ Optical Mobile App** (available on Google Play) lets you:\n• Pick your date & time\n• Specify your concerns\n• Get instant confirmation\n\nWalk-ins are also welcome!",
+                "make an appointment": "📱 **Online appointments are mobile app exclusive!**\n\nPlease download our **RCJ Optical Mobile App** from Google Play Store to make your appointment. You can also visit our clinic directly.",
+                "need to see": "📱 **To schedule with our optometrist, please use our mobile app!**\n\nDownload the **RCJ Optical Mobile App** from Google Play Store for easy booking.\n\nCall us for assistance at 0956 347 8586",
+                "how to book": "📱 **Booking is available only through our mobile app!**\n\nHere's how:\n1. Download 'RCJ Optical Mobile App' from Google Play\n2. Create your appointment\n3. Set date, time, and concerns\n4. Confirm your booking\n\nOr visit us in person!",
+                "booking": "📱 **All online bookings are handled through our RCJ Optical Mobile App!**\n\nAvailable on Google Play Store - download now to book your visit!\n\nPrefer to call us? 0956 347 8586",
+                "online": "📱 **Online services are mobile app exclusive!**\n\nFor appointments and bookings, please use our **RCJ Optical Mobile App** available on Google Play Store.",
+                "mobile app": "📱 **Yes! Our RCJ Optical Mobile App is available on Google Play Store!**\n\nYou can use it to:\n• Book appointments\n• Manage your visits\n• Set reminders\n• And more!\n\nDownload it today!",
+                "download": "📱 **You can download our RCJ Optical Mobile App from Google Play Store!**\n\nIt's free and lets you book appointments anytime, anywhere!",
+                "app": "📱 **Our RCJ Optical Mobile App is available on Google Play Store!**\n\nUse it for convenient appointment booking and management."
+            },
+            hours: {
+                "hour": "🕒 **Our clinic hours are:**\n\nMonday-Friday: 9AM - 7PM\nSaturday: 9AM - 5PM\nSunday: Closed\n\n📱 *Appointments via mobile app only*\n\n<span class='clickable-link' data-page='contact'>Contact us for more info</span>",
+                "open": "🕒 **We're open:**\n\nMonday-Friday: 9AM - 7PM\nSaturday: 9AM - 5PM\nSunday: Closed\n\n<span class='clickable-link' data-page='contact'>Call us at 0956 347 8586</span>\n📱 *Book via our mobile app*",
+                "close": "🕒 **We close at:**\n• 7PM on weekdays\n• 5PM on Saturdays\n• Closed on Sundays\n\n📱 *Appointments: Mobile app only*\n<span class='clickable-link' data-page='contact'>Get directions to our clinic</span>",
+                "what time": "🕒 **Operating hours:**\nMonday-Friday: 9AM-7PM\nSaturday: 9AM-5PM\nSunday: Closed\n\n📱 *Booking: Mobile app exclusive*\n<span class='clickable-link' data-page='contact'>Visit us today!</span>",
+                "when close": "🕒 **Closing times:**\n• Weekdays: 7PM\n• Saturday: 5PM\n• Sunday: Closed\n\n📱 *Schedule via our mobile app*\n<span class='clickable-link' data-page='contact'>Find our location</span>"
+            },
+            location: {
+                "location": "📍 **We're located at:**\n\nPrimark Double L, Rodriguez, Philippines\n\n📱 *Appointments: Mobile app only*\n💻 *Website: Information only*\n\n<span class='clickable-link' data-page='contact'>Get directions →</span>",
+                "address": "📍 **Our address:**\n\nPrimark Double L, Rodriguez, Philippines\n\n📱 *Booking: Mobile app exclusive*\n💻 *Website for information*\n\n<span class='clickable-link' data-page='contact'>View on map →</span>",
+                "where": "📍 **Find us at:**\n\nPrimark Double L, Rodriguez, Philippines\n\n📱 *Appointments through mobile app only*\n\n<span class='clickable-link' data-page='contact'>Plan your visit →</span>",
+                "find": "📍 **Our clinic is at:**\nPrimark Double L, Rodriguez, Philippines\n\n📱 *Online booking: Mobile app only*\n\n<span class='clickable-link' data-page='contact'>See contact details →</span>",
+                "located": "📍 **We're at:**\nPrimark Double L, Rodriguez, Philippines\n\n📱 *Schedule via our mobile app*\n\n<span class='clickable-link' data-page='contact'>Contact information →</span>",
+                "place": "📍 **RCJ Optical Location:**\nPrimark Double L, Rodriguez, Philippines\n\n📱 *Appointments: Mobile app exclusive*\n\n<span class='clickable-link' data-page='contact'>Visit our contact page →</span>"
+            },
+            services: {
+                "service": "👁️ **Our Services:**\n• Comprehensive eye exams\n• Contact lens fittings\n• Pediatric optometry\n• Premium eyewear\n• Vision therapy\n\n📱 *Appointments: Mobile app only*\n<span class='clickable-link' data-page='services'>View all services →</span>",
+                "offer": "👁️ **We offer:**\n- Comprehensive eye exams\n- Contact lens fittings\n- Pediatric optometry\n- Premium eyewear\n- Vision therapy\n\n📱 *Book via mobile app*\n<span class='clickable-link' data-page='services'>Learn more about services →</span>",
+                "test": "👁️ **We provide thorough eye examinations** including vision tests and eye health evaluations.\n\n📱 *Schedule: Mobile app only*\n<span class='clickable-link' data-page='services'>Explore our eye exams →</span>",
+                "eye exam": "👁️ **Comprehensive eye exams** available!\n\n📱 *Book via our mobile app*\n<span class='clickable-link' data-page='services'>See exam details →</span>",
+                "glasses": "👓 **Premium eyewear selection!**\n\n<span class='clickable-link' data-page='services'>Browse our frames →</span>\n📱 *Appointments: Mobile app*",
+                "contact lens": "👁️ **Contact lens fittings & various brands**\n\n📱 *Schedule via mobile app*\n<span class='clickable-link' data-page='services'>View contact lens options →</span>"
+            },
+            website: {
+                "website": "💻 **Our website provides information only.**\n\n📱 **For appointments, please use our RCJ Optical Mobile App** (available on Google Play Store)\n\nYou can:\n• <span class='clickable-link' data-page='services'>Learn about our services</span>\n• <span class='clickable-link' data-page='contact'>View our location</span>\n• Check business hours\n• Contact information",
+                "online booking": "💻 **Online booking is not available on our website.**\n\n📱 **Please download our RCJ Optical Mobile App** from Google Play Store for appointments and bookings.\n\n<span class='clickable-link' data-page='contact'>Contact us for help</span>",
+                "book online": "💻 **Online booking is mobile app exclusive!**\n\n📱 **Download our RCJ Optical Mobile App** from Google Play Store to book your appointment.",
+                "web": "💻 **Website: Information purposes only**\n\n📱 **Appointments: RCJ Optical Mobile App only**\n\n<span class='clickable-link' data-page='services'>Browse our services</span> | <span class='clickable-link' data-page='contact'>Contact us</span>",
+                "site": "💻 **This site is for information.**\n\n📱 **Booking: Mobile app exclusive**\n\nGet our app from Google Play Store!\n\n<span class='clickable-link' data-page='home'>Back to homepage</span>"
+            },
+            general: {
+                "help": "I can help with:\n• <span class='clickable-link' data-page='services'>Services</span> 👁️\n• <span class='clickable-link' data-page='contact'>Location</span> 📍\n• <span class='clickable-link' data-page='contact'>Hours</span> 🕒\n• Mobile App 📱\n• General Info 💻\n\nWhat would you like to know?",
+                "about": "RCJ Optical - Full-service vision care in Rodriguez, Philippines.\n\n📱 *Appointments: Mobile app only*\n\n<span class='clickable-link' data-page='services'>Our Services</span> | <span class='clickable-link' data-page='contact'>Visit Us</span>",
+                "thanks": "You're welcome! 😊 Remember:\n• Appointments: Mobile app 📱\n• <span class='clickable-link' data-page='contact'>Walk-ins: Welcome during hours</span>\n• <span class='clickable-link' data-page='contact'>Questions: Call us!</span>",
+                "thank you": "You're very welcome! 😊\n\n📱 *Book via our mobile app*\n💻 *Website for information*\n\n<span class='clickable-link' data-page='services'>Explore our services</span>",
+                "fallback": "I'm here to help! You can ask about:\n• Mobile App 📱 (for appointments)\n• <span class='clickable-link' data-page='contact'>Location</span> 📍\n• <span class='clickable-link' data-page='contact'>Hours</span> 🕒\n• <span class='clickable-link' data-page='services'>Services</span> 👁️\n• Website Info 💻\n\nHow may I assist you?",
+                "download app": "📱 **Download our RCJ Optical Mobile App:**\n\n👉 **Google Play:** [Your Google Play Link]\n\n**Features:**\n• Book appointments\n• Set reminders\n• Manage visits\n• Easy scheduling\n\n*Website is for information only*"
+            }
+            };
+
+        // Tagalog data
+        const tagalogData = {
+
+            greetings: {
+                "hi": "Kumusta! 👋 Maligayang pagdating sa RCJ Optical. Paano ko kayo matutulungan ngayon?",
+                "hello": "Kumusta po! 😊 Ano po ang maipaglilingkod ko sa inyo tungkol sa aming optical services?",
+                "hey": "Kumusta! Maligayang pagdating sa RCJ Optical. Ano po ang dalhin ninyo dito ngayon?",
+                "good morning": "Magandang umaga! ☀️ Paano kami makatutulong sa inyong pangangailangan sa paningin ngayon?",
+                "good afternoon": "Magandang hapon! 😊 Anong mga katanungan mayroon kayo tungkol sa aming optical services?"
+            },
+            appointment: {
+                "appointment": "📱 **Ang online appointments ay available lamang sa aming RCJ Optical Mobile App!**\n\nMangyaring i-download ang aming app mula sa Google Play Store para:\n• Mag-book ng appointment\n• Pumili ng prefer mong petsa at oras\n• Itakda ang iyong mga alalahanin\n• Tumanggap ng mga kumpirmasyon\n\nMaaari ka ring bumisita sa amin nang direkta sa oras ng negosyo!",
+                "book": "📱 **Ang pag-book ay ginagawa lamang sa aming mobile app!**\n\nI-download ang **RCJ Optical Mobile App** mula sa Google Play Store para mag-schedule ng iyong appointment.\n\nO makipag-ugnayan sa amin nang direkta para sa tulong!",
+                "schedule": "📱 **I-schedule ang iyong pagbisita gamit ang aming mobile app!**\n\nAng aming **RCJ Optical Mobile App** (available sa Google Play) ay nagpapahintulot sa iyo na:\n• Pumili ng petsa at oras\n• Tukuyin ang iyong mga alalahanin\n• Makuha ang agarang kumpirmasyon\n\nAng walk-ins ay malugod ding tinatanggap!",
+                "make an appointment": "📱 **Ang online appointments ay eksklusibo sa mobile app!**\n\nMangyaring i-download ang aming **RCJ Optical Mobile App** mula sa Google Play Store para gumawa ng appointment. Maaari ka ring bumisita sa aming clinic nang direkta.",
+                "need to see": "📱 **Para mag-schedule sa aming optometrist, mangyaring gamitin ang aming mobile app!**\n\nI-download ang **RCJ Optical Mobile App** mula sa Google Play Store para sa madaling pag-book.\n\nTumawag sa amin para sa tulong sa 0956 347 8586",
+                "how to book": "📱 **Ang pag-book ay available lamang sa aming mobile app!**\n\nNarito kung paano:\n1. I-download ang 'RCJ Optical Mobile App' mula sa Google Play\n2. Gumawa ng iyong appointment\n3. Itakda ang petsa, oras, at mga alalahanin\n4. Kumpirmahin ang iyong booking\n\nO bumisita sa amin nang personal!",
+                "booking": "📱 **Lahat ng online bookings ay hinahawakan ng aming RCJ Optical Mobile App!**\n\nAvailable sa Google Play Store - i-download ngayon para mag-book ng iyong pagbisita!\n\nMas gusto bang tumawag? 0956 347 8586",
+                "online": "📱 **Ang online services ay eksklusibo sa mobile app!**\n\nPara sa appointments at bookings, mangyaring gamitin ang aming **RCJ Optical Mobile App** na available sa Google Play Store.",
+                "mobile app": "📱 **Oo! Ang aming RCJ Optical Mobile App ay available sa Google Play Store!**\n\nMagagamit mo ito para:\n• Mag-book ng appointments\n• Pamahalaan ang iyong mga pagbisita\n• Magtakda ng mga paalala\n• At marami pang iba!\n\nI-download ito ngayon!",
+                "download": "📱 **Maaari mong i-download ang aming RCJ Optical Mobile App mula sa Google Play Store!**\n\nLibre ito at nagpapahintulot sa iyo na mag-book ng appointments anumang oras, kahit saan!",
+                "app": "📱 **Ang aming RCJ Optical Mobile App ay available sa Google Play Store!**\n\nGamitin ito para sa maginhawang pag-book ng appointment at pamamahala."
+            },
+            hours: {
+                "hour": "🕒 **Ang aming oras ng clinic ay:**\n\nLunes-Biyernes: 9AM - 7PM\nSabado: 9AM - 5PM\nLinggo: Sarado\n\n📱 *Appointments sa pamamagitan ng mobile app lamang*\n\n<span class='clickable-link' data-page='contact'>Makipag-ugnayan sa amin para sa karagdagang impormasyon</span>",
+                "open": "🕒 **Kami ay bukas:**\n\nLunes-Biyernes: 9AM - 7PM\nSabado: 9AM - 5PM\nLinggo: Sarado\n\n<span class='clickable-link' data-page='contact'>Tumawag sa amin sa 0956 347 8586</span>\n📱 *Mag-book sa pamamagitan ng aming mobile app*",
+                "close": "🕒 **Kami ay nagsasara ng:**\n• 7PM sa weekdays\n• 5PM sa Sabado\n• Sarado sa Linggo\n\n📱 *Appointments: Mobile app lamang*\n<span class='clickable-link' data-page='contact'>Kumuha ng direksyon sa aming clinic</span>",
+                "what time": "🕒 **Oras ng operasyon:**\nLunes-Biyernes: 9AM-7PM\nSabado: 9AM-5PM\nLinggo: Sarado\n\n📱 *Booking: Eksklusibo sa mobile app*\n<span class='clickable-link' data-page='contact'>Bisitahin kami ngayon!</span>",
+                "when close": "🕒 **Oras ng pagsasara:**\n• Weekdays: 7PM\n• Sabado: 5PM\n• Linggo: Sarado\n\n📱 *Mag-schedule sa pamamagitan ng aming mobile app*\n<span class='clickable-link' data-page='contact'>Hanapin ang aming lokasyon</span>"
+            },
+            location: {
+                "location": "📍 **Kami ay matatagpuan sa:**\n\nPrimark Double L, Rodriguez, Philippines\n\n📱 *Appointments: Mobile app lamang*\n💻 *Website: Para sa impormasyon lamang*\n\n<span class='clickable-link' data-page='contact'>Kumuha ng direksyon →</span>",
+                "address": "📍 **Ang aming address:**\n\nPrimark Double L, Rodriguez, Philippines\n\n📱 *Booking: Eksklusibo sa mobile app*\n💻 *Website para sa impormasyon*\n\n<span class='clickable-link' data-page='contact'>Tingnan sa mapa →</span>",
+                "where": "📍 **Hanapin kami sa:**\n\nPrimark Double L, Rodriguez, Philippines\n\n📱 *Appointments sa pamamagitan ng mobile app lamang*\n\n<span class='clickable-link' data-page='contact'>Plano ang iyong pagbisita →</span>",
+                "find": "📍 **Ang aming clinic ay nasa:**\nPrimark Double L, Rodriguez, Philippines\n\n📱 *Online booking: Mobile app lamang*\n\n<span class='clickable-link' data-page='contact'>Tingnan ang mga detalye ng contact →</span>",
+                "located": "📍 **Kami ay nasa:**\nPrimark Double L, Rodriguez, Philippines\n\n📱 *Mag-schedule sa pamamagitan ng aming mobile app*\n\n<span class='clickable-link' data-page='contact'>Impormasyon ng contact →</span>",
+                "place": "📍 **Lokasyon ng RCJ Optical:**\nPrimark Double L, Rodriguez, Philippines\n\n📱 *Appointments: Eksklusibo sa mobile app*\n\n<span class='clickable-link' data-page='contact'>Bisitahin ang aming contact page →</span>"
+            },
+            services: {
+                "service": "👁️ **Ang Aming Mga Serbisyo:**\n• Komprehensibong eye exams\n• Contact lens fittings\n• Pediatric optometry\n• Premium eyewear\n• Vision therapy\n\n📱 *Appointments: Mobile app lamang*\n<span class='clickable-link' data-page='services'>Tingnan ang lahat ng serbisyo →</span>",
+                "offer": "👁️ **Nag-aalok kami ng:**\n- Komprehensibong eye exams\n- Contact lens fittings\n- Pediatric optometry\n- Premium eyewear\n- Vision therapy\n\n📱 *Mag-book sa pamamagitan ng mobile app*\n<span class='clickable-link' data-page='services'>Matuto pa tungkol sa mga serbisyo →</span>",
+                "test": "👁️ **Nagbibigay kami ng masusing pagsusuri sa mata** kasama ang mga vision test at pagsusuri sa kalusugan ng mata.\n\n📱 *Mag-schedule: Mobile app lamang*\n<span class='clickable-link' data-page='services'>I-explore ang aming eye exams →</span>",
+                "eye exam": "👁️ **Komprehensibong eye exams available!**\n\n📱 *Mag-book sa pamamagitan ng aming mobile app*\n<span class='clickable-link' data-page='services'>Tingnan ang mga detalye ng exam →</span>",
+                "glasses": "👓 **Premium na seleksyon ng eyewear!**\n\n<span class='clickable-link' data-page='services'>I-browse ang aming mga frame →</span>\n📱 *Appointments: Mobile app*",
+                "contact lens": "👁️ **Contact lens fittings at iba't ibang brands**\n\n📱 *Mag-schedule sa pamamagitan ng mobile app*\n<span class='clickable-link' data-page='services'>Tingnan ang mga opsyon sa contact lens →</span>"
+            },
+            website: {
+                "website": "💻 **Ang aming website ay nagbibigay lamang ng impormasyon.**\n\n📱 **Para sa appointments, mangyaring gamitin ang aming RCJ Optical Mobile App** (available sa Google Play Store)\n\nMaaari kang:\n• <span class='clickable-link' data-page='services'>Matuto tungkol sa aming mga serbisyo</span>\n• <span class='clickable-link' data-page='contact'>Tingnan ang aming lokasyon</span>\n• Suriin ang oras ng negosyo\n• Impormasyon ng contact",
+                "online booking": "💻 **Ang online booking ay hindi available sa aming website.**\n\n📱 **Mangyaring i-download ang aming RCJ Optical Mobile App** mula sa Google Play Store para sa appointments at bookings.\n\n<span class='clickable-link' data-page='contact'>Makipag-ugnayan sa amin para sa tulong</span>",
+                "book online": "💻 **Ang online booking ay eksklusibo sa mobile app!**\n\n📱 **I-download ang aming RCJ Optical Mobile App** mula sa Google Play Store para mag-book ng iyong appointment.",
+                "web": "💻 **Website: Para sa layunin ng impormasyon lamang**\n\n📱 **Appointments: RCJ Optical Mobile App lamang**\n\n<span class='clickable-link' data-page='services'>I-browse ang aming mga serbisyo</span> | <span class='clickable-link' data-page='contact'>Makipag-ugnayan sa amin</span>",
+                "site": "💻 **Ang site na ito ay para sa impormasyon.**\n\n📱 **Booking: Eksklusibo sa mobile app**\n\nKunin ang aming app mula sa Google Play Store!\n\n<span class='clickable-link' data-page='home'>Bumalik sa homepage</span>"
+            },
+            general: {
+                "help": "Maaari kitang tulungan sa:\n• <span class='clickable-link' data-page='services'>Mga Serbisyo</span> 👁️\n• <span class='clickable-link' data-page='contact'>Lokasyon</span> 📍\n• <span class='clickable-link' data-page='contact'>Oras</span> 🕒\n• Mobile App 📱\n• Pangkalahatang Impormasyon 💻\n\nAno ang gusto mong malaman?",
+                "about": "RCJ Optical - Buong serbisyo ng vision care sa Rodriguez, Philippines.\n\n📱 *Appointments: Mobile app lamang*\n\n<span class='clickable-link' data-page='services'>Ang Aming Mga Serbisyo</span> | <span class='clickable-link' data-page='contact'>Bisitahin Kami</span>",
+                "thanks": "Walang anuman! 😊 Tandaan:\n• Appointments: Mobile app 📱\n• <span class='clickable-link' data-page='contact'>Walk-ins: Malugod na tinatanggap sa oras</span>\n• <span class='clickable-link' data-page='contact'>Mga Tanong: Tumawag sa amin!</span>",
+                "thank you": "Walang anuman! 😊\n\n📱 *Mag-book sa pamamagitan ng aming mobile app*\n💻 *Website para sa impormasyon*\n\n<span class='clickable-link' data-page='services'>I-explore ang aming mga serbisyo</span>",
+                "fallback": "Narito ako para tumulong! Maaari kang magtanong tungkol sa:\n• Mobile App 📱 (para sa appointments)\n• <span class='clickable-link' data-page='contact'>Lokasyon</span> 📍\n• <span class='clickable-link' data-page='contact'>Oras</span> 🕒\n• <span class='clickable-link' data-page='services'>Mga Serbisyo</span> 👁️\n• Impormasyon ng Website 💻\n\nPaano kita matutulungan?",
+                "download app": "📱 **I-download ang aming RCJ Optical Mobile App:**\n\n👉 **Google Play:** [Iyong Google Play Link]\n\n**Mga Tampok:**\n• Mag-book ng appointments\n• Magtakda ng mga paalala\n• Pamahalaan ang mga pagbisita\n• Madaling pag-schedule\n\n*Ang website ay para sa impormasyon lamang*"
+            }
+        };
+
+        async function uploadEnglish() {
+            try {
+                await db.collection('chatbot_responses').doc('english').set(englishData);
+                alert('✅ English data uploaded successfully!');
+            } catch (error) {
+                alert('❌ Error: ' + error.message);
+            }
+        }
+
+        async function uploadTagalog() {
+            try {
+                await db.collection('chatbot_responses').doc('tagalog').set(tagalogData);
+                alert('✅ Tagalog data uploaded successfully!');
+            } catch (error) {
+                alert('❌ Error: ' + error.message);
+            }
+        }
+    </script>
+</body>
+</html>

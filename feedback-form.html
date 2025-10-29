@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback - RCJ Optical Clinic</title>
+    <meta name="description" content="Share your feedback with RCJ Optical Clinic. Help us improve our eye care services.">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/feedback.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>RCJ <span>Optical</span></h1>
+                <p>Clinic & Vision Center</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="about.html">Our Team</a></li>
+                    <li class="active"><a href="feedback-form.html">Feedback</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+        </div>
+    </header>
+
+    <!-- Feedback Hero -->
+    <section class="feedback-hero">
+        <div class="container">
+            <div class="feedback-hero-content">
+                <h1>We Value Your Feedback</h1>
+                <p>Your experience helps us provide better eye care for everyone</p>
+                <div class="feedback-stats">
+                    <div class="stat-item">
+                        <i class="fas fa-star"></i>
+                        <span>4.9/5 Average Rating</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-comments"></i>
+                        <span>500+ Reviews</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>100% Confidential</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feedback Form -->
+    <section class="feedback-section">
+        <div class="container">
+            <div class="feedback-container">
+                <div class="feedback-info">
+                    <h2>Help Us Improve</h2>
+                    <p>Your honest feedback helps us enhance our services and patient experience. We read every comment and use your suggestions to make RCJ Optical even better.</p>
+                    
+                    <div class="benefits">
+                        <h3>Why Your Feedback Matters:</h3>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Helps us improve patient care</li>
+                            <li><i class="fas fa-check-circle"></i> Guides our service enhancements</li>
+                            <li><i class="fas fa-check-circle"></i> Recognizes our amazing staff</li>
+                            <li><i class="fas fa-check-circle"></i> Shapes future patient experiences</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="feedback-form-wrapper">
+                    <!-- REMOVED THE ACTION ATTRIBUTE -->
+                    <form id="feedbackForm">
+                        <input type="hidden" name="platform" value="website">
+                        <input type="hidden" name="source" value="website">
+                        <input type="hidden" name="status" value="new">
+                        <input type="hidden" name="timestamp" id="timestamp">
+
+                        <div class="form-group">
+                            <label>How would you rate your experience with us? *</label>
+                            <div class="star-rating">
+                                <input type="radio" id="star5" name="rating" value="5" required>
+                                <label for="star5">★</label>
+                                <input type="radio" id="star4" name="rating" value="4">
+                                <label for="star4">★</label>
+                                <input type="radio" id="star3" name="rating" value="3">
+                                <label for="star3">★</label>
+                                <input type="radio" id="star2" name="rating" value="2">
+                                <label for="star2">★</label>
+                                <input type="radio" id="star1" name="rating" value="1">
+                                <label for="star1">★</label>
+                            </div>
+                            <div class="rating-labels">
+                                <span>Poor</span>
+                                <span>Excellent</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="service-type">Which service did you receive?</label>
+                            <select name="service_type" id="service-type">
+                                <option value="">Select a service</option>
+                                <option value="eye_exam">Comprehensive Eye Exam</option>
+                                <option value="eyewear">Eyewear/Prescription Glasses</option>
+                                <option value="contacts">Contact Lens Fitting</option>
+                                <option value="pediatric">Pediatric Eye Care</option>
+                                <option value="specialty">Specialty Care</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="comments">Your Comments *</label>
+                            <textarea name="comments" id="comments" rows="5" placeholder="What did you like about your visit? How can we improve?" required></textarea>
+                            <div class="char-count"><span id="charCount">0</span>/500 characters</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="user_email">Email Address (Optional)</label>
+                            <input type="email" name="user_email" id="user_email" placeholder="your@email.com">
+                            <small>Only if you'd like us to follow up with you</small>
+                        </div>
+
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="anonymous" name="anonymous">
+                            <label for="anonymous">Submit anonymously</label>
+                        </div>
+
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i>
+                            Submit Feedback
+                        </button>
+                    </form>
+
+                    <div id="thankYouMessage" class="thank-you-message">
+                        <div class="success-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h2>Thank You for Your Feedback!</h2>
+                        <p>We appreciate you taking the time to help us improve our services. Your feedback is valuable to us.</p>
+                        <div class="thank-you-actions">
+                            <a href="index.html" class="btn">Return to Homepage</a>
+                            <a href="services.html" class="btn btn-outline">Explore Our Services</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>RCJ Optical Clinic</h3>
+                    <p>Providing exceptional eye care with cutting-edge technology and personalized service since 2012.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="about.html">Our Team</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="services.html#exams">Eye Exams</a></li>
+                        <li><a href="services.html#eyewear">Eyewear</a></li>
+                        <li><a href="services.html#contacts">Contact Lenses</a></li>
+                        <li><a href="services.html#pediatric">Pediatric Optometry</a></li>
+                        <li><a href="services.html#specialty">Specialty Care</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> Primark Double L , Rodriguez, Philippines</p>
+                        <p><i class="fas fa-phone"></i> 0956 347 8586</p>
+                        <p><i class="fas fa-envelope"></i> info@rcjoptical.com</p>
+                        <p><i class="fas fa-clock"></i> Mon-Fri: 9AM-7PM<br>Sat: 9AM-5PM<br>Sun: Closed</p>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 RCJ Optical Clinic. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="js/feedback.js"></script>
+</body>
+</html>

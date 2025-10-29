@@ -6,10 +6,11 @@
     <title>RCJ Optical Clinic - Premium Eye Care Services</title>
     <meta name="description" content="RCJ Optical Clinic provides comprehensive eye care services including eye exams, glasses, contact lenses, and specialized treatments with expert optometrists.">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/chatbot.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Header -->
@@ -24,8 +25,8 @@
                     <li class="active"><a href="index.html">Home</a></li>
                     <li><a href="services.html">Services</a></li>
                     <li><a href="about.html">Our Team</a></li>
+                    <li><a href="feedback-form.html">Feedback</a></li>
                     <li><a href="contact.html">Contact</a></li>
-                    <li class="cta-nav"><a href="contact.html">Book Appointment</a></li>
                 </ul>
             </nav>
             <div class="menu-toggle"><i class="fas fa-bars"></i></div>
@@ -35,11 +36,39 @@
     <!-- Hero Banner -->
     <section class="hero">
         <div class="container">
-            <h1>Experience Vision Perfected</h1>
-            <p>Advanced eye care with personalized treatment plans and premium eyewear</p>
-            <div class="hero-btns">
-                <a href="services.html" class="btn">Our Services</a>
-                <a href="contact.html" class="btn-outline">Book Consultation</a>
+            <div class="hero-content">
+                <h1>Experience Vision Perfected</h1>
+                <p>Advanced eye care with personalized treatment plans and premium eyewear</p>
+                <div class="hero-btns">
+                <div class="hero-btns">
+                    <a href="services.html" class="btn">Our Services</a>
+                    <a href="contact.html" class="btn">Visit Our Clinic</a>
+                </div>
+                </div>
+                <!-- In hero section, replace the social-follow div -->
+                <div class="social-follow">
+                    <p>Join our community</p>
+                    <a href="https://www.facebook.com/profile.php?id=100091493815500" target="_blank" class="facebook-btn">
+                        <i class="fab fa-facebook-f"></i>
+                        <span>Follow us on Facebook</span>
+                        <span class="follower-count">+350 followers</span>
+                    </a>
+                    <div class="social-stats">
+                        <div class="stat">
+                            <i class="fas fa-users"></i>
+                            <span>Growing Community</span>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-heart"></i>
+                            <span>Patient Love</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="image-placeholder">
+                    <i class="fas fa-eye"></i>
+                </div>
             </div>
         </div>
     </section>
@@ -206,8 +235,8 @@
         <div class="container">
             <div class="cta-content">
                 <h2>Ready for Clearer Vision?</h2>
-                <p>Schedule your comprehensive eye exam today and experience the RCJ difference</p>
-                <a href="contact.html" class="btn">Book Your Appointment</a>
+                <p>Visit our clinic today and experience the RCJ difference</p>
+                <a href="contact.html" class="btn">Visit Our Clinic</a>
             </div>
         </div>
     </section>
@@ -220,7 +249,7 @@
                     <h3>RCJ Optical Clinic</h3>
                     <p>Providing exceptional eye care with cutting-edge technology and personalized service since 2012.</p>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.facebook.com/profile.php?id=100091493815500"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
                         <a href="#"><i class="fab fa-linkedin-in"></i></a>
@@ -248,10 +277,19 @@
                 </div>
                 <div class="footer-col">
                     <h3>Contact Us</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Primark Double L , Rodriguez, <br>Philippines</p>
-                    <p><i class="fas fa-phone"></i> 0956 347 8586</p>
-                    <p><i class="fas fa-envelope"></i> info@rcjoptical.com</p>
-                    <p><i class="fas fa-clock"></i> Mon-Fri: 9AM-7PM<br>Sat: 9AM-5PM<br>Sun: Closed</p>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> Primark Double L , Rodriguez, Philippines</p>
+                        <p><i class="fas fa-phone"></i> 0956 347 8586</p>
+                        <p><i class="fas fa-envelope"></i> info@rcjoptical.com</p>
+                        <p><i class="fas fa-clock"></i> Mon-Fri: 9AM-7PM<br>Sat: 9AM-5PM<br>Sun: Closed</p>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Your Feedback Matters</h3>
+                    <p>Help us improve our services by sharing your experience</p>
+                    <a href="feedback-form.html" class="btn" style="background: #007bff; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; display: inline-block; margin-top: 10px;">
+                        Share Feedback
+                    </a>
                 </div>
             </div>
             <div class="copyright">
@@ -260,34 +298,35 @@
         </div>
     </footer>
 
-    <!-- Chat Bot -->
-    <div class="chatbot-container">
+    <!-- Chatbot Container -->
+    <div id="chatbot-container" class="chatbot-container">
         <div class="chatbot-header">
-            <h4>Vision Assistance</h4>
+            <h4>RCJ Optical Assistant</h4>
             <p>How can we help you today?</p>
-            <button class="close-chatbot"><i class="fas fa-times"></i></button>
+            <button id="close-chatbot" class="close-chatbot">×</button>
         </div>
-        <div class="chatbot-messages">
-            <div class="chatbot-message bot">
-                <p>Hello! 👋 Welcome to RCJ Optical. I'm here to help with appointment booking, service questions, or general information. What can I assist you with?</p>
-                <span class="timestamp">Just now</span>
-            </div>
+        
+        <div id="chatbot-messages" class="chatbot-messages">
+            <!-- Messages will appear here -->
         </div>
-        <div class="chatbot-quick-replies">
-            <button class="quick-reply">Book an appointment</button>
-            <button class="quick-reply">Hours & location</button>
-            <button class="quick-reply">Insurance questions</button>
+        
+        <div id="chatbot-quick-replies" class="chatbot-quick-replies">
+            <!-- Quick reply buttons will appear here -->
         </div>
+        
         <div class="chatbot-input">
-            <input type="text" placeholder="Type your message...">
-            <button><i class="fas fa-paper-plane"></i></button>
+            <input type="text" id="user-input" placeholder="Type your message...">
+            <button id="send-message">➤</button>
         </div>
     </div>
-    <button class="chatbot-trigger">
-        <i class="fas fa-comment-dots"></i>
-        <span>Need Help?</span>
+
+    <!-- Chatbot Trigger -->
+    <button id="chatbot-trigger" class="chatbot-trigger">
+        💬 <span>Chat with us</span>
     </button>
 
-    <script src="js/script.js"></script>
+    <script type="module" src="js/script.js"></script>
+    <script type="module" src="js/chatbot.js"></script>
+    <script type="module" src="js/feedback.js"></script>
 </body>
 </html>

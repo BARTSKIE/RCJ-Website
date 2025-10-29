@@ -20,8 +20,8 @@
                     <li><a href="index.html">Home</a></li>
                     <li class="active"><a href="services.html">Services</a></li>
                     <li><a href="about.html">Our Team</a></li>
+                    <li><a href="feedback-form.html">Feedback</a></li>
                     <li><a href="contact.html">Contact</a></li>
-                    <li class="cta-nav"><a href="contact.html">Book Appointment</a></li>
                 </ul>
             </nav>
             <div class="menu-toggle"><i class="fas fa-bars"></i></div>
@@ -48,7 +48,6 @@
                         <li>Optical coherence tomography</li>
                         <li>Dry eye evaluation</li>
                     </ul>
-                    <a href="contact.html" class="btn">Schedule Exam</a>
                 </div>
                 <div class="service-image">
                     <img src="images/types-eye-tests.jpg" alt="Eye Exam">
@@ -75,16 +74,92 @@
         </div>
     </section>
 
-    <!-- Additional services sections... -->
-
     <!-- Footer -->
     <footer>
-        <!-- Same footer as index.html -->
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>RCJ Optical Clinic</h3>
+                    <p>Providing exceptional eye care with cutting-edge technology and personalized service since 2012.</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/profile.php?id=100091493815500"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="about.html">Our Team</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="services.html#exams">Eye Exams</a></li>
+                        <li><a href="services.html#eyewear">Eyewear</a></li>
+                        <li><a href="services.html#contacts">Contact Lenses</a></li>
+                        <li><a href="services.html#pediatric">Pediatric Optometry</a></li>
+                        <li><a href="services.html#specialty">Specialty Care</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> Primark Double L , Rodriguez, Philippines</p>
+                        <p><i class="fas fa-phone"></i> 0956 347 8586</p>
+                        <p><i class="fas fa-envelope"></i> info@rcjoptical.com</p>
+                        <p><i class="fas fa-clock"></i> Mon-Fri: 9AM-7PM<br>Sat: 9AM-5PM<br>Sun: Closed</p>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Your Feedback Matters</h3>
+                    <p>Help us improve our services by sharing your experience</p>
+                    <a href="feedback-form.html" class="btn" style="background: #007bff; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; display: inline-block; margin-top: 10px;">
+                        Share Feedback
+                    </a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 RCJ Optical Clinic. All rights reserved.</p>
+            </div>
+        </div>
     </footer>
 
-    <!-- Chat Bot -->
-    <!-- Same as index.html -->
+    <!-- Chatbot Container -->
+    <div id="chatbot-container" class="chatbot-container">
+        <div class="chatbot-header">
+            <h4>RCJ Optical Assistant</h4>
+            <p>How can we help you today?</p>
+            <button id="close-chatbot" class="close-chatbot">×</button>
+        </div>
+        
+        <div id="chatbot-messages" class="chatbot-messages">
+            <!-- Messages will appear here -->
+        </div>
+        
+        <div id="chatbot-quick-replies" class="chatbot-quick-replies">
+            <!-- Quick reply buttons will appear here -->
+        </div>
+        
+        <div class="chatbot-input">
+            <input type="text" id="user-input" placeholder="Type your message...">
+            <button id="send-message">➤</button>
+        </div>
+    </div>
 
-    <script src="js/script.js"></script>
+    <!-- Chatbot Trigger -->
+    <button id="chatbot-trigger" class="chatbot-trigger">
+        💬 <span>Chat with us</span>
+    </button>
+
+    <script type="module" src="js/script.js"></script>
+    <script type="module" src="js/chatbot.js"></script>
+    <script type="module" src="js/feedback.js"></script>
 </body>
 </html>
