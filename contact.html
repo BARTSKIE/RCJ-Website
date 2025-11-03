@@ -1,3 +1,4 @@
+<!-- contact.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,6 +22,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RCJ Optical - Contact</title>
     <link rel="icon" type="image/png" href="images/RCJ.png">
+    <link rel="stylesheet" href="css/contact.csss">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -39,6 +41,27 @@
                     <li><a href="about.html">Our Team</a></li>
                     <li><a href="feedback-form.html">Feedback</a></li>
                     <li class="active"><a href="contact.html">Contact</a></li>
+                    <li><a href="support.html">Support</a></li>
+                    <!-- Add these authentication links -->
+                    <li id="authLinks">
+                        <!-- These will be shown when user is NOT logged in -->
+                        <a href="login.html" class="auth-link login-link">Login</a>
+                    </li>
+                    <!-- User menu (will be shown when logged in) -->
+                    <li id="userMenu" style="display: none;">
+                        <div class="user-dropdown">
+                            <button class="user-btn">
+                                <i class="fas fa-user-circle"></i>
+                                <span id="userName">User</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="dropdown-content">
+                                <a href="profile.html"><i class="fas fa-user"></i> My Profile</a>
+                                <a href="support.html"><i class="fas fa-headset"></i> Customer Support</a>
+                                <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                            </div>
+                        </div>
+                    </li>
                 </ul>
             </nav>
             <div class="menu-toggle"><i class="fas fa-bars"></i></div>
@@ -97,9 +120,9 @@
                     <p>Providing exceptional eye care with cutting-edge technology and personalized service since 2012.</p>
                     <div class="social-links">
                         <a href="https://www.facebook.com/profile.php?id=100091493815500"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <!-- <a href="#"><i class="fab fa-instagram"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a> -->
                     </div>
                 </div>
                 <div class="footer-col">
@@ -110,6 +133,7 @@
                         <li><a href="about.html">Our Team</a></li>
                         <li><a href="contact.html">Contact</a></li>
                         <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="support.html">Support</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -172,6 +196,7 @@
         💬 <span>Chat with us</span>
     </button>
 
+    <script type="module" src="js/update-navigation.js"></script>
     <script type="module" src="js/script.js"></script>
     <script type="module" src="js/chatbot.js"></script>
     <script type="module" src="js/feedback.js"></script>

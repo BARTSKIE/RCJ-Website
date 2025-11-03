@@ -1,4 +1,6 @@
 // script.js (CLEAN - NO CHATBOT CODE)
+import './auth-state.js';
+
 document.addEventListener('DOMContentLoaded', function() {
     // Mobile Menu Toggle
     const menuToggle = document.querySelector('.menu-toggle');
@@ -82,4 +84,17 @@ document.addEventListener('DOMContentLoaded', function() {
             link.parentElement.classList.remove('active');
         }
     });
+});
+window.addEventListener('resize', () => {
+  const chatbot = document.querySelector('.chatbot-container');
+  if (chatbot && chatbot.classList.contains('active')) {
+    // Ensure it stays within screen
+    const rect = chatbot.getBoundingClientRect();
+    if (rect.right > window.innerWidth) {
+      chatbot.style.right = '10px';
+    }
+    if (rect.bottom > window.innerHeight) {
+      chatbot.style.bottom = '10px';
+    }
+  }
 });

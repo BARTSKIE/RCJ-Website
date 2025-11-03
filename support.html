@@ -1,29 +1,13 @@
-<!-- services.html -->
+<!-- support.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Essential Meta Tags -->
-    <meta name="description" content="RCJ Optical - Professional eye care services, appointments, and optical products">
-    <meta name="keywords" content="optical, eye care, glasses, contact lenses, eye exam, RCJ">
-    <meta name="author" content="RCJ Optical">
-
-    <!-- Open Graph Tags (for social media) -->
-    <meta property="og:title" content="RCJ Optical - Professional Eye Care">
-    <meta property="og:description" content="Quality eye care services and optical products">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://your-render-url.onrender.com">
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="RCJ Optical">
-    <meta name="twitter:description" content="Professional eye care services">
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RCJ Optical - Services</title>
+    <title>Customer Support - RCJ Optical</title>
     <link rel="icon" type="image/png" href="images/RCJ.png">
-    <link rel="stylesheet" href="css/services.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/support.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
@@ -37,11 +21,11 @@
             <nav>
                 <ul>
                     <li><a href="index.html">Home</a></li>
-                    <li class="active"><a href="services.html">Services</a></li>
+                    <li><a href="services.html">Services</a></li>
                     <li><a href="about.html">Our Team</a></li>
                     <li><a href="feedback-form.html">Feedback</a></li>
                     <li><a href="contact.html">Contact</a></li>
-                    <li><a href="support.html">Support</a></li>
+                    <li class="active"><a href="support.html">Support</a></li>
                     <!-- Add these authentication links -->
                     <li id="authLinks">
                         <!-- These will be shown when user is NOT logged in -->
@@ -68,47 +52,47 @@
         </div>
     </header>
 
-    <section class="page-header">
+    <section class="support-hero">
         <div class="container">
-            <h1>Our Premium Services</h1>
-            <p>Comprehensive eye care tailored to your vision needs</p>
+            <h1>Customer Support</h1>
+            <p>Get help with your inquiries and concerns</p>
         </div>
     </section>
 
-    <section class="services-detailed">
+    <section class="support-content">
         <div class="container">
-            <div class="service-category">
-                <div class="service-info">
-                    <h2><i class="fas fa-eye"></i> Comprehensive Eye Exams</h2>
-                    <p>Our 60-minute comprehensive exams include:</p>
-                    <ul>
-                        <li>Digital retinal imaging</li>
-                        <li>Visual field testing</li>
-                        <li>Corneal topography</li>
-                        <li>Optical coherence tomography</li>
-                        <li>Dry eye evaluation</li>
-                    </ul>
+            <div class="support-options">
+                <div class="support-card">
+                    <div class="support-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>Chat with our AI Assistant</h3>
+                    <p>Get instant answers to common questions about our services, appointments, and more.</p>
+                    <button class="btn btn-primary" onclick="openChatbot()">
+                        Open Chatbot
+                    </button>
                 </div>
-                <div class="service-image">
-                    <img src="images/types-eye-tests.jpg" alt="Eye Exam">
+                
+                <div class="support-card">
+                    <div class="support-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Live Support</h3>
+                    <p>Connect with our support team for personalized assistance with complex issues.</p>
+                    <button class="btn btn-secondary" onclick="requestLiveSupport()">
+                        Request Live Help
+                    </button>
                 </div>
-            </div>
-
-            <div class="service-category">
-                <div class="service-image">
-                    <img src="images/designer-eyewear.jpg" alt="Designer Eyewear">
-                </div>
-                <div class="service-info">
-                    <h2><i class="fas fa-glasses"></i> Premium Eyewear Collection</h2>
-                    <p>Featuring brands like:</p>
-                    <ul>
-                        <li>Lindberg</li>
-                        <li>Matsuda</li>
-                        <li>Mykita</li>
-                        <li>Silhouette</li>
-                        <li>Dita</li>
-                    </ul>
-                    <p>Lens options include blue light filtering, photochromic, and high-index</p>
+                
+                <div class="support-card">
+                    <div class="support-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h3>Call Us Directly</h3>
+                    <p>Speak directly with our team during business hours for immediate assistance.</p>
+                    <a href="tel:09563478586" class="btn btn-outline">
+                        <i class="fas fa-phone"></i> 0956 347 8586
+                    </a>
                 </div>
             </div>
         </div>
@@ -171,37 +155,41 @@
             </div>
         </div>
     </footer>
+    <script type="module">
+    import { auth } from './js/firebase-config.js';
 
-    <!-- Chatbot Container -->
-    <div id="chatbot-container" class="chatbot-container">
-        <div class="chatbot-header">
-            <h4>RCJ Optical Assistant</h4>
-            <p>How can we help you today?</p>
-            <button id="close-chatbot" class="close-chatbot">×</button>
-        </div>
-        
-        <div id="chatbot-messages" class="chatbot-messages">
-            <!-- Messages will appear here -->
-        </div>
-        
-        <div id="chatbot-quick-replies" class="chatbot-quick-replies">
-            <!-- Quick reply buttons will appear here -->
-        </div>
-        
-        <div class="chatbot-input">
-            <input type="text" id="user-input" placeholder="Type your message...">
-            <button id="send-message">➤</button>
-        </div>
-    </div>
+    // Debug function
+    function checkAuthStatus() {
+        const user = auth.currentUser;
+        console.log('=== AUTH DEBUG ===');
+        console.log('Current user:', user ? user.email : 'No user');
+        console.log('Email verified:', user ? user.emailVerified : 'N/A');
+        console.log('User ID:', user ? user.uid : 'N/A');
+        console.log('==============');
+    }
 
-    <!-- Chatbot Trigger -->
-    <button id="chatbot-trigger" class="chatbot-trigger">
-        💬 <span>Chat with us</span>
-    </button>
+    // Check on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(() => {
+            checkAuthStatus();
+        }, 2000);
+    });
+    </script>
 
     <script type="module" src="js/update-navigation.js"></script>
-    <script type="module" src="js/script.js"></script>
-    <script type="module" src="js/chatbot.js"></script>
-    <script type="module" src="js/feedback.js"></script>
+    <script>
+        function openChatbot() {
+            // Trigger chatbot opening
+            if (window.chatbotTrigger) {
+                chatbotTrigger.click();
+            }
+        }
+        
+        function requestLiveSupport() {
+            // Redirect to chatbot with live support request
+            openChatbot();
+            // You can add additional logic to auto-trigger live support
+        }
+    </script>
 </body>
 </html>

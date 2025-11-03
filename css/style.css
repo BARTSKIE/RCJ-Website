@@ -754,7 +754,354 @@ footer {
         bottom: -8px;
     }
 }
+/* ========== CONTACT PAGE STYLES ========== */
+.contact-hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/contact-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 150px 0 100px;
+    color: var(--white);
+    text-align: center;
+}
 
+.contact-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.contact-info {
+    padding: 80px 0;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 50px;
+    margin: 80px 0;
+}
+
+.contact-details h2 {
+    margin-top: 30px;
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.contact-details p {
+    margin: 10px 0 25px;
+    padding-left: 34px;
+}
+
+.map-container {
+    height: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.appointment-form {
+    background: var(--light);
+    padding: 80px 0;
+}
+
+#appointmentForm {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+}
+
+.form-group textarea {
+    height: 150px;
+    resize: vertical;
+}
+
+/* User Authentication Styles */
+.auth-link {
+    padding: 8px 15px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    margin-left: 5px;
+}
+
+.login-link {
+    background: transparent;
+    color: #333;
+    border: 2px solid #007bff;
+}
+
+.login-link:hover {
+    background: #007bff;
+    color: white;
+}
+
+.register-link {
+    background: #007bff;
+    color: white;
+    border: 2px solid #007bff;
+}
+
+.register-link:hover {
+    background: #0056b3;
+    border-color: #0056b3;
+}
+
+/* ========== USER DROPDOWN FIXES ========== */
+.user-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.user-btn {
+    background: #f8f9fa;
+    border: 2px solid #e9ecef;
+    border-radius: 25px;
+    padding: 8px 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.user-btn:hover {
+    background: #e9ecef;
+    border-color: #007bff;
+}
+
+.user-btn i:first-child {
+    color: #007bff;
+    font-size: 16px;
+}
+
+.user-btn i:last-child {
+    font-size: 12px;
+    transition: transform 0.3s ease;
+}
+
+.user-dropdown:hover .user-btn i:last-child {
+    transform: rotate(180deg);
+}
+
+/* FIX: Remove the gap between button and dropdown */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background: white;
+    min-width: 200px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    border-radius: 10px;
+    z-index: 1000;
+    margin-top: 5px; /* Reduced from larger value */
+    border: 1px solid #e9ecef;
+    /* FIX: Add padding to bridge the gap */
+    padding-top: 5px; /* This creates an invisible hover area */
+}
+
+/* FIX: Create an invisible bridge between button and dropdown */
+.dropdown-content::before {
+    content: '';
+    position: absolute;
+    top: -10px; /* Extends upward to bridge the gap */
+    left: 0;
+    width: 100%;
+    height: 10px; /* Creates hoverable area */
+    background: transparent;
+}
+
+.user-dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 15px;
+    text-decoration: none;
+    color: #333;
+    border-bottom: 1px solid #f8f9fa;
+    transition: all 0.3s ease;
+    position: relative; /* Ensure they stay above the invisible bridge */
+    z-index: 1; /* Ensure links are above the invisible area */
+}
+
+.dropdown-content a:last-child {
+    border-bottom: none;
+}
+
+.dropdown-content a:hover {
+    background: #f8f9fa;
+    color: #007bff;
+}
+
+.dropdown-content a i {
+    width: 16px;
+    text-align: center;
+}
+
+/* Alternative simpler fix - remove the gap completely */
+.user-menu {
+    position: relative;
+}
+
+.user-menu .user-dropdown {
+    position: static; /* Change to static for better control */
+}
+
+.user-menu .dropdown-content {
+    margin-top: 0; /* Remove any gap */
+    top: calc(100% + 2px); /* Position it right below the button */
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+    .auth-link {
+        padding: 6px 12px;
+        font-size: 14px;
+        margin-left: 0;
+        margin-top: 5px;
+    }
+    
+    .user-btn {
+        padding: 6px 12px;
+        font-size: 13px;
+    }
+    
+    .dropdown-content {
+        right: -10px;
+        min-width: 180px;
+    }
+}
+/* ========== ABOUT/TEAM PAGE STYLES ========== */
+.team {
+    padding: 80px 0;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.team-member {
+    background: var(--white);
+    padding: 40px 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.team-member:hover {
+    transform: translateY(-10px);
+}
+
+/* Updated image styles for team members */
+.team-member img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 5px solid var(--light);
+}
+
+.team-member h3 {
+    margin-bottom: 5px;
+    color: var(--primary);
+}
+
+.team-member p:first-of-type {
+    font-weight: 600;
+    color: var(--secondary);
+    margin-bottom: 10px;
+}
+/* ========== SERVICES PAGE STYLES ========== */
+.page-header {
+    padding: 120px 0 60px;
+    background: linear-gradient(rgba(0, 95, 140, 0.8), rgba(0, 95, 140, 0.8)), url('../images/services-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    color: var(--white);
+    text-align: center;
+}
+
+.page-header h1 {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+.services-detailed {
+    padding: 80px 0;
+}
+
+.service-category {
+    display: flex;
+    align-items: center;
+    margin-bottom: 80px;
+    gap: 50px;
+}
+
+.service-info, .service-image {
+    flex: 1;
+}
+
+.service-image img {
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.service-info h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: var(--primary);
+}
+
+.service-info h2 i {
+    margin-right: 10px;
+    color: var(--secondary);
+}
+
+.service-info ul {
+    margin: 20px 0 30px;
+    padding-left: 20px;
+}
+
+.service-info li {
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 25px;
+}
+
+.service-info li::before {
+    content: "•";
+    color: var(--secondary);
+    position: absolute;
+    left: 0;
+    font-size: 1.2rem;
+}
 /* ========== INDEX PAGE STYLES ========== */
 /* Hero Section */
 .hero {
@@ -997,7 +1344,7 @@ footer {
 /* Testimonials */
 .testimonials {
     padding: 100px 0;
-    background: linear-gradient(rgba(0, 95, 140, 0.9), rgba(0, 95, 140, 0.9)), url('../images/testimonial-bg.jpg');
+    background: linear-gradient(rgba(0, 95, 140, 0.9), rgba(0, 95, 140, 0.9));
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -1156,191 +1503,4 @@ footer {
     color: var(--primary);
     transform: translateY(-5px);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-}
-
-/* ========== SERVICES PAGE STYLES ========== */
-.page-header {
-    padding: 120px 0 60px;
-    background: linear-gradient(rgba(0, 95, 140, 0.8), rgba(0, 95, 140, 0.8)), url('../images/services-bg.jpg');
-    background-size: cover;
-    background-position: center;
-    color: var(--white);
-    text-align: center;
-}
-
-.page-header h1 {
-    font-size: 3rem;
-    margin-bottom: 15px;
-}
-
-.services-detailed {
-    padding: 80px 0;
-}
-
-.service-category {
-    display: flex;
-    align-items: center;
-    margin-bottom: 80px;
-    gap: 50px;
-}
-
-.service-info, .service-image {
-    flex: 1;
-}
-
-.service-image img {
-    border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
-
-.service-info h2 {
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-    color: var(--primary);
-}
-
-.service-info h2 i {
-    margin-right: 10px;
-    color: var(--secondary);
-}
-
-.service-info ul {
-    margin: 20px 0 30px;
-    padding-left: 20px;
-}
-
-.service-info li {
-    margin-bottom: 10px;
-    position: relative;
-    padding-left: 25px;
-}
-
-.service-info li::before {
-    content: "•";
-    color: var(--secondary);
-    position: absolute;
-    left: 0;
-    font-size: 1.2rem;
-}
-
-/* ========== ABOUT/TEAM PAGE STYLES ========== */
-.team {
-    padding: 80px 0;
-}
-
-.team-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    margin-top: 50px;
-}
-
-.team-member {
-    background: var(--white);
-    padding: 40px 30px;
-    border-radius: 10px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-    text-align: center;
-    transition: transform 0.3s ease;
-}
-
-.team-member:hover {
-    transform: translateY(-10px);
-}
-
-/* Updated image styles for team members */
-.team-member img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 20px;
-    border: 5px solid var(--light);
-}
-
-.team-member h3 {
-    margin-bottom: 5px;
-    color: var(--primary);
-}
-
-.team-member p:first-of-type {
-    font-weight: 600;
-    color: var(--secondary);
-    margin-bottom: 10px;
-}
-
-/* ========== CONTACT PAGE STYLES ========== */
-.contact-hero {
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/contact-bg.jpg');
-    background-size: cover;
-    background-position: center;
-    padding: 150px 0 100px;
-    color: var(--white);
-    text-align: center;
-}
-
-.contact-hero h1 {
-    font-size: 3rem;
-    margin-bottom: 20px;
-}
-
-.contact-info {
-    padding: 80px 0;
-}
-
-.contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 50px;
-    margin: 80px 0;
-}
-
-.contact-details h2 {
-    margin-top: 30px;
-    font-size: 1.4rem;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.contact-details p {
-    margin: 10px 0 25px;
-    padding-left: 34px;
-}
-
-.map-container {
-    height: 100%;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
-
-.appointment-form {
-    background: var(--light);
-    padding: 80px 0;
-}
-
-#appointmentForm {
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.form-group {
-    margin-bottom: 25px;
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea {
-    width: 100%;
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-family: 'Poppins', sans-serif;
-    font-size: 1rem;
-}
-
-.form-group textarea {
-    height: 150px;
-    resize: vertical;
 }

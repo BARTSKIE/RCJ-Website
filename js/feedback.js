@@ -1,21 +1,6 @@
-// Add Firebase configuration for Realtime Database
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js';
-import { getDatabase, ref, push } from 'https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js';
-
-// Your Firebase configuration (for Realtime Database)
-const firebaseConfig = {
-    apiKey: "AIzaSyCvxPjQyEjn5_vIVgwGhOgAVlIkx5chnWE",
-    authDomain: "rcj-firebase-database.firebaseapp.com",
-    databaseURL: "https://rcj-firebase-database-default-rtdb.firebaseio.com",
-    projectId: "rcj-firebase-database",
-    storageBucket: "rcj-firebase-database.firebasestorage.app",
-    messagingSenderId: "322419824007",
-    appId: "1:322419824007:web:8c797773a13fae041caf22",
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
+// feedback.js - Updated to use shared Firebase config
+import { auth, db } from './firebase-config.js'; // Use shared config
+import { ref, push } from 'https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js';
 
 // Form submission handler
 document.addEventListener('DOMContentLoaded', function() {
@@ -25,11 +10,19 @@ document.addEventListener('DOMContentLoaded', function() {
     const comments = document.getElementById('comments');
     const stars = document.querySelectorAll('.star-rating input');
     
-    // Set timestamp
-    document.getElementById('timestamp').value = Date.now();
+    console.log('Feedback form initialized');
     
-    // Character count for comments
-    if (comments) {
+    // Set timestamp - WITH NULL CHECK
+    const timestampField = document.getElementById('timestamp');
+    if (timestampField) {
+        timestampField.value = Date.now();
+        console.log('Timestamp set successfully');
+    } else {
+        console.log('Timestamp field not found - check for duplicate IDs');
+    }
+    
+    // Character count for comments - WITH NULL CHECK
+    if (comments && charCount) {
         comments.addEventListener('input', function() {
             const count = this.value.length;
             charCount.textContent = count;
@@ -44,14 +37,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 charCount.classList.remove('warning', 'error');
             }
         });
+        console.log('Character count initialized');
+    } else {
+        console.log('Comments or charCount elements not found');
     }
 
-    // Star rating hover effects
-    stars.forEach(star => {
-        star.addEventListener('change', function() {
-            updateStarDisplay(this.value);
+    // Star rating hover effects - WITH NULL CHECK
+    if (stars.length > 0) {
+        stars.forEach(star => {
+            star.addEventListener('change', function() {
+                updateStarDisplay(this.value);
+            });
         });
-    });
+        console.log('Star rating initialized');
+    }
 
     if (feedbackForm) {
         feedbackForm.addEventListener('submit', async function(e) {
@@ -174,15 +173,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-// Run the test when page loads
-document.addEventListener('DOMContentLoaded', function() {
-    testFirebaseConnection();
-});
-
-// Run the test when page loads
-document.addEventListener('DOMContentLoaded', function() {
-    testFirebaseConnection();
-});
+    // Run the test when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+        testFirebaseConnection();
+    });
 
     function updateStarDisplay(rating) {
         const labels = document.querySelectorAll('.star-rating label');
