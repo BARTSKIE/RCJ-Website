@@ -98,3 +98,16 @@ window.addEventListener('resize', () => {
     }
   }
 });
+// Simple app download tracking
+function trackAppDownloads() {
+    const appLinks = document.querySelectorAll('a[href*="expo.dev"]');
+    appLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            console.log('RCJ Optical app download initiated');
+            // You can add Google Analytics or other tracking here
+        });
+    });
+}
+
+// Initialize when page loads
+document.addEventListener('DOMContentLoaded', trackAppDownloads);

@@ -1504,3 +1504,205 @@ footer {
     transform: translateY(-5px);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
+/* Mobile App Section Styles */
+.mobile-app-section {
+    background: #f8f9fa;
+    padding: 60px 0;
+}
+
+.app-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.app-subtitle {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.app-features-list {
+    margin-bottom: 30px;
+}
+
+.app-feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.app-feature i {
+    font-size: 1.3rem;
+    color: #007bff;
+    background: white;
+    padding: 12px;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    min-width: 50px;
+    text-align: center;
+}
+
+.app-feature h4 {
+    margin-bottom: 5px;
+    color: #333;
+    font-size: 1.1rem;
+}
+
+.app-feature p {
+    color: #666;
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.app-download-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 25px;
+    background: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-align: center;
+    justify-content: center;
+}
+
+.download-btn:hover {
+    background: #0056b3;
+    transform: translateY(-2px);
+    color: white;
+}
+
+.app-requirements {
+    text-align: center;
+}
+
+.app-requirements small {
+    color: #666;
+    font-size: 0.8rem;
+}
+
+/* Phone Mockup */
+.phone-mockup {
+    position: relative;
+    width: 280px;
+    height: 500px;
+    background: #333;
+    border-radius: 30px;
+    padding: 15px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    margin: 0 auto;
+}
+
+.phone-screen {
+    width: 100%;
+    height: 100%;
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.app-placeholder {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Hero CTA Styles */
+.mobile-app-cta {
+    text-align: center;
+    margin-top: 25px;
+    padding: 15px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+}
+
+.app-download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: #28a745;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    margin: 10px 0;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.app-download-btn:hover {
+    background: #218838;
+    transform: translateY(-1px);
+    color: white;
+}
+
+.app-features {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.app-features span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.9);
+}
+
+/* Footer App Button */
+.app-footer-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin: 8px 0;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.app-footer-btn:hover {
+    background: #0056b3;
+    color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .app-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        text-align: center;
+    }
+    
+    .phone-mockup {
+        width: 250px;
+        height: 450px;
+    }
+    
+    .app-feature {
+        justify-content: center;
+        text-align: left;
+    }
+    
+    .app-features {
+        flex-direction: column;
+        gap: 8px;
+    }
+}
