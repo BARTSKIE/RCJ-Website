@@ -596,7 +596,6 @@ async function createSupportTicket(userMessage) {
         
         console.log('Creating support ticket for verified mobile user:', userName);
         
-        // In chatbot.js - update the support ticket creation
         const supportTicket = {
             userId: currentUserId,
             userName: userName,
@@ -608,7 +607,7 @@ async function createSupportTicket(userMessage) {
             messages: [
                 {
                     sender: "user",
-                    content: userMessage,
+                    content: userMessage, // Store raw message, not formatted
                     timestamp: new Date().toISOString(),
                     messageType: "text"
                 }
@@ -618,29 +617,28 @@ async function createSupportTicket(userMessage) {
             userType: "mobile_registered"
         };
 
-        // Use Firestore for support tickets (not Realtime DB)
         const docRef = await addDoc(collection(firestoreDb, "supportTickets"), supportTicket);
         currentTicketId = docRef.id;
-        console.log('Support ticket created with ID:', currentTicketId);
+        console.log('Support ticket created with raw message:', userMessage);
         
         return true;
     } catch (error) {
         console.error('Error creating support ticket:', error);
-        
-        // Fallback: Show error message to user
         appendMessage("Sorry, there was an error connecting to support. Please try again later.", "system");
         return false;
     }
 }
 
 // In chatbot.js - update the sendMessageToAdmin function
+// In the sendMessageToAdmin function, update how messages are created:
 async function sendMessageToAdmin(message) {
     if (!currentTicketId) return;
 
     try {
+        // **FIX: Store only the raw message content, not formatted**
         const userMessage = {
             sender: "user",
-            content: message,
+            content: message, // Store only the raw message
             timestamp: new Date().toISOString(),
             messageType: "text"
         };
@@ -655,14 +653,13 @@ async function sendMessageToAdmin(message) {
             await updateDoc(ticketRef, {
                 messages: updatedMessages,
                 lastActivity: new Date().toISOString(),
-                status: "active" // Ensure status is active when user sends message
+                status: "active"
             });
             
-            console.log('Message sent to admin:', message);
+            console.log('Raw message sent to admin:', message);
         }
     } catch (error) {
         console.error('Error sending message to admin:', error);
-        // Fallback: show error to user
         appendMessage("Failed to send message. Please try again.", "system");
     }
 }

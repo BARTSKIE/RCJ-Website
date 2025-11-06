@@ -8,6 +8,7 @@
     <link rel="icon" type="image/png" href="images/RCJ.png">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/chatbot.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
@@ -130,6 +131,33 @@
             </div>
         </div>
     </div>
+
+    <!-- Chatbot Container -->
+    <div id="chatbot-container" class="chatbot-container">
+        <div class="chatbot-header">
+            <h4>RCJ Optical Assistant</h4>
+            <p>How can we help you today?</p>
+            <button id="close-chatbot" class="close-chatbot">×</button>
+        </div>
+        
+        <div id="chatbot-messages" class="chatbot-messages">
+            <!-- Messages will appear here -->
+        </div>
+        
+        <div id="chatbot-quick-replies" class="chatbot-quick-replies">
+            <!-- Quick reply buttons will appear here -->
+        </div>
+        
+        <div class="chatbot-input">
+            <input type="text" id="user-input" placeholder="Type your message...">
+            <button id="send-message">➤</button>
+        </div>
+    </div>
+
+    <!-- Chatbot Trigger -->
+    <button id="chatbot-trigger" class="chatbot-trigger">
+        💬 <span>Chat with us</span>
+    </button>
 
 
     <script type="module" src="js/update-navigation.js"></script>
